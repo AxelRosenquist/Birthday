@@ -2,19 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grattis!</title>
+    <title>Grattis!❤️</title>
 </head>
 <body>
     <h1>
-        Grattis på födelsadagen älskling
+        Grattis på födelsadagen älskling!❤️
     </h1>
     <h2>
         För att ta reda på vad din present är måste du lista ut vilken bokstav som siffrorna nedan har bytt ut!
-        <br>
-        
+    <br>
+        Välj ett nummer i första rutan och gissa vilken bokstav som den siffran representerar
     </h2>
     <p id="secretString"></p>
+    <form id="charSwitch">
+        <input type="number" min="1" max ="24" id="number">
+        <input type="text" id="character">
+        <input type="submit" value="Testa bytet">
+    </form>
     <script src="script.js"></script> 
 </body>
 </html>
