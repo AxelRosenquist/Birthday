@@ -13,6 +13,7 @@ string.toLowerCase().split('').forEach((letter) => {
         cryptString += letter 
     }
 });
+let currentString = cryptString;
 
 document.getElementById('secretString').innerHTML = cryptString;
 
@@ -20,8 +21,18 @@ let number;
 let character;
 document.getElementById('submit').onclick = function(){
     event.preventDefault();
-    number = document.getElementById('number').value;
+    number = Number(document.getElementById('number').value);
     character = document.getElementById('character').value;
-    console.log(number + ' AND ' + character);
+    console.log('_' + String(number) + ' ' + '_')
+    
+    if (dictionary[number] == character){
+        currentString = currentString.replaceAll(String(number) + ' ',  character)
+        console.log('You guessed Right');
+        console.log(currentString);
+        document.getElementById('secretString').innerHTML = currentString;
+    }else{
+        console.log('You guessed wrong');
+
+    }
 };
 
