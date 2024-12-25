@@ -1,1 +1,1 @@
-Den tjugoandra mars ska du och jag se Molly Hammar i Malmö. I presenten ingår även restaurangbesök och annat du vill hitta på!
+Simple html js site for my wifes birthday, made for phone only :)
