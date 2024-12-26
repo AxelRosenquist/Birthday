@@ -1,6 +1,6 @@
-let string = 'Den tjugoandra mars ska du och jag se Molly Hammar i Malmö. I presenten ingår även restaurangbesök och annat du vill hitta på!';
+let string = 'Den-tjugoandra-mars-ska-du-och-jag-se-Molly-Hammar-i-Malmö.-I-presenten-ingår-även-restaurangbesök-och-annat-du-vill-hitta-på!';
 let cryptString = '';
-let dictionary = {1: 'g', 2: 'a', 3: 'ö', 4: 'k', 5: 'b', 6: 'd', 7: 'o', 8: 't', 9: 'p', 10: 'v', 11: 'n', 12: 'e', 13: 'ä', 14: 'i', 15: 'å', 16: 's', 17: 'l', 18: 'c', 19: 'h', 20: 'j', 21: 'm', 22: 'u', 23: 'r', 24: 'y', 25: ' '};
+let dictionary = {1: 'g', 2: 'a', 3: 'ö', 4: 'k', 5: 'b', 6: 'd', 7: 'o', 8: 't', 9: 'p', 10: 'v', 11: 'n', 12: 'e', 13: 'ä', 14: 'i', 15: 'å', 16: 's', 17: 'l', 18: 'c', 19: 'h', 20: 'j', 21: 'm', 22: 'u', 23: 'r', 24: 'y', 25: '-'};
 
 string.toLowerCase().split('').forEach((letter) => {
     if (!(letter == '.' || letter == '!' || letter == ',')){
@@ -13,18 +13,26 @@ string.toLowerCase().split('').forEach((letter) => {
         cryptString += letter 
     }
 });
-document.getElementById('secretString').innerHTML = cryptString;
-
 let currentString = cryptString;
+document.getElementById('secretString').innerHTML = currentString;
+
 let number;
 let character;
-document.getElementById('submit').onclick = function(){
+document.getElementById('submit').onclick = function(event) {
     event.preventDefault();
     number = Number(document.getElementById('number').value);
     character = document.getElementById('character').value;
-    if (dictionary[number] == character){
-        currentString = currentString.replaceAll(String(number) + ' ',  character)
+
+    if (dictionary[number] == character) {
+        // Replace the number and ensure it handles boundaries correctly
+        currentString = currentString.replaceAll(new RegExp(`\\b${number}(?=\\b|\\s)`, 'g'), character);
         document.getElementById('secretString').innerHTML = currentString;
-    }
+    } 
+    //else if (dictionary[number] == character && character == ' ') {
+        // Handle spaces specifically
+    //    currentString = currentString.replaceAll(new RegExp('\\b' + number + '\\b', 'g'), character);
+    //    document.getElementById('secretString').innerHTML = currentString;
+    //}
+    localStorage.setItem('secretString', currentString); // Save updated string
 };
 
