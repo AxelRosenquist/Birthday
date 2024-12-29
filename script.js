@@ -7,27 +7,28 @@ string.toLowerCase().split('').forEach((letter) => {
         for (let key in dictionary){
             if (dictionary[key] == letter){
                 cryptString += (key.toString() + ' ' ) 
+                break;
             }
         }
     } else {
         cryptString += letter 
     }
 });
+
 let currentString = cryptString;
 if (localStorage.getItem('current string') != null) {
     currentString = localStorage.getItem('current string')
 }
+
 document.getElementById('secretString').innerHTML = currentString;
 
-let number;
-let character;
 document.getElementById('submit').onclick = function(event) {
     event.preventDefault();
-    number = Number(document.getElementById('number').value);
-    character = document.getElementById('character').value;
+    let number = Number(document.getElementById('number').value);
+    let character = document.getElementById('character').value;
     
     if (dictionary[number] == character) {
-        currentString = currentString.replaceAll(new RegExp(`\\b${number}\\b`  , 'g'), character);
+        currentString = currentString.replaceAll(new RegExp(`\\b${number}\\b` , 'g'), character);
         document.getElementById('secretString').innerHTML = currentString;
     } 
     localStorage.setItem('current string', currentString)
