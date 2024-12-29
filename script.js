@@ -14,11 +14,10 @@ string.toLowerCase().split('').forEach((letter) => {
     }
 });
 let currentString = cryptString;
-if (localStorage.getItem('current string') == null) {
-    document.getElementById('secretString').innerHTML = currentString    
-} else{
-    document.getElementById('secretString').innerHTML = localStorage.getItem('current string');
+if (localStorage.getItem('current string') != null) {
+    currentString = localStorage.getItem('current string')
 }
+document.getElementById('secretString').innerHTML = currentString;
 
 let number;
 let character;
@@ -28,10 +27,11 @@ document.getElementById('submit').onclick = function(event) {
     character = document.getElementById('character').value;
     
     if (dictionary[number] == character) {
-        currentString = currentString.replaceAll(new RegExp(`\\b${number}\\b`, 'g'), character);
-        localStorage.setItem('current string', currentString)
+        currentString = currentString.replaceAll(new RegExp(`\\b${number}\\b`  , 'g'), character);
         document.getElementById('secretString').innerHTML = currentString;
     } 
-        localStorage.setItem('secretString', currentString);
+    localStorage.setItem('current string', currentString)
 };
     
+
+ 
