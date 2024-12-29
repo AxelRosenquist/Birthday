@@ -14,7 +14,11 @@ string.toLowerCase().split('').forEach((letter) => {
     }
 });
 let currentString = cryptString;
-document.getElementById('secretString').innerHTML = currentString;
+if (localStorage.getItem('current string') == null) {
+    document.getElementById('secretString').innerHTML = currentString    
+} else{
+    document.getElementById('secretString').innerHTML = localStorage.getItem('current string');
+}
 
 let number;
 let character;
@@ -22,17 +26,12 @@ document.getElementById('submit').onclick = function(event) {
     event.preventDefault();
     number = Number(document.getElementById('number').value);
     character = document.getElementById('character').value;
-
+    
     if (dictionary[number] == character) {
-        // Replace the number and ensure it handles boundaries correctly
-        currentString = currentString.replaceAll(new RegExp(`\\b${number}(?=\\b|\\s)`, 'g'), character);
+        currentString = currentString.replaceAll(new RegExp(`\\b${number}\\b`, 'g'), character);
+        localStorage.setItem('current string', currentString)
         document.getElementById('secretString').innerHTML = currentString;
     } 
-    //else if (dictionary[number] == character && character == ' ') {
-        // Handle spaces specifically
-    //    currentString = currentString.replaceAll(new RegExp('\\b' + number + '\\b', 'g'), character);
-    //    document.getElementById('secretString').innerHTML = currentString;
-    //}
-    localStorage.setItem('secretString', currentString); // Save updated string
+        localStorage.setItem('secretString', currentString);
 };
-
+    
