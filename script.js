@@ -25,7 +25,7 @@ document.getElementById('secretString').innerHTML = currentString;
 document.getElementById('submit').onclick = function(event) {
     event.preventDefault();
     let number = Number(document.getElementById('number').value);
-    let character = document.getElementById('character').value;
+    let character = document.getElementById('character').value.toLowerCase();
     
     if (dictionary[number] == character) {
         currentString = currentString.replaceAll(new RegExp(`\\b${number}\\b` , 'g'), character);
